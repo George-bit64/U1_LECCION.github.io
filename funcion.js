@@ -1,6 +1,15 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
+const imgPlayer = new Image();
+imgPlayer.src = 'img/player.png';
+
+const imgEnemy = new Image();
+imgEnemy.src = 'img/enemy.png';
+
+const imgHeart = new Image();
+imgHeart.src = 'img/pixel_heart.png';
+
 let score = 0;
 let lives = 3;
 let player = { x: canvas.width / 2 - 15, y: canvas.height - 40, width: 30, height: 20, speed: 5 };
@@ -9,7 +18,7 @@ let enemyBullets = [];
 let enemies = [];
 const bulletSpeed = 7;
 const enemyBulletSpeed = 4;
-const cols = 5;
+const cols = 8;
 const rows = 2;
 const enemyWidth = 30;
 const enemyHeight = 20;
@@ -34,26 +43,27 @@ function spawnEnemies() {
 
 // Dibujar jugador
 function drawPlayer() {
-  ctx.fillStyle = 'white';
-  ctx.fillRect(player.x, player.y, player.width, player.height);
+  ctx.drawImage(imgPlayer, player.x, player.y, player.width, player.height);
 }
+
 
 // Dibujar enemigos
 function drawEnemies() {
-  ctx.fillStyle = 'lime';
   enemies.forEach(enemy => {
-    ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+    ctx.drawImage(imgEnemy, enemy.x, enemy.y, enemy.width, enemy.height);
   });
 }
+
 
 // Dibujar vidas
 function drawLives() {
   const livesDiv = document.getElementById('lives');
   livesDiv.innerHTML = 'Vidas: ';
   for (let i = 0; i < lives; i++) {
-    livesDiv.innerHTML += '<span style=\"display:inline-block;width:20px;height:20px;background:white;margin:0 2px;\"></span>';
+    livesDiv.innerHTML += `<img src=\"img/pixel_heart.png\" width=\"20\" height=\"20\" style=\"margin: 0 2px; vertical-align: middle;\">`;
   }
 }
+
 
 // Dibujar y manejar balas del jugador
 function drawBullets() {
