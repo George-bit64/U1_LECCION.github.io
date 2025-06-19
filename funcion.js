@@ -58,9 +58,9 @@ function drawEnemies() {
 // Dibujar vidas
 function drawLives() {
   const livesDiv = document.getElementById('lives');
-  livesDiv.innerHTML = 'Vidas: ';
+  livesDiv.innerHTML = 'Lives: ';
   for (let i = 0; i < lives; i++) {
-    livesDiv.innerHTML += `<img src=\"img/pixel_heart.png\" width=\"20\" height=\"20\" style=\"margin: 0 2px; vertical-align: middle;\">`;
+    livesDiv.innerHTML += `<img src=\"img/pixel_heart.png\" width=\"20\" height=\"20\" style=\"margin: 0 3px; vertical-align: middle;\">`;
   }
 }
 
@@ -90,14 +90,20 @@ function drawBullets() {
   });
 }
 
-// Dibujar y manejar balas de enemigos
 function drawEnemyBullets() {
   ctx.fillStyle = 'yellow';
-  enemyBullets.forEach((bullet, i) => {
-    bullet.y += enemyBulletSpeed;
-    if (bullet.y > canvas.height) enemyBullets.splice(i, 1);
 
-    // Colisión con el jugador
+  for (let i = enemyBullets.length - 1; i >= 0; i--) {
+    const bullet = enemyBullets[i];
+    bullet.y += enemyBulletSpeed;
+
+
+    if (bullet.y > canvas.height) {
+      enemyBullets.splice(i, 1);
+      continue;
+    }
+
+    // Verificar colisión con el jugador
     if (
       bullet.x < player.x + player.width &&
       bullet.x + 4 > player.x &&
@@ -107,17 +113,21 @@ function drawEnemyBullets() {
       enemyBullets.splice(i, 1);
       lives--;
       drawLives();
+
       if (lives <= 0) {
         setTimeout(() => {
-          alert('Game Over\\nPuntaje: ' + score);
-          resetGame();
+          showGameOver(); 
         }, 100);
       }
+
+      continue;
     }
 
+    // Dibujar la bala enemiga
     ctx.fillRect(bullet.x, bullet.y, 4, 10);
-  });
+  }
 }
+
 
 // Disparo enemigo aleatorio de la primera línea visible
 function enemyShoot() {
@@ -137,7 +147,7 @@ function enemyShoot() {
 
 // Actualizar puntaje
 function updateScore() {
-  document.getElementById('score').textContent = 'Puntaje: ' + score;
+  document.getElementById('score').textContent = 'Score: ' + score;
 }
 
 // Disparar jugador
@@ -188,3 +198,13 @@ updateScore();
 drawLives();
 setInterval(enemyShoot, 1000); // disparos enemigos cada 1 seg
 gameLoop();
+
+function showGameOver() {
+  document.getElementById('finalScore').textContent = 'Score: ' + score;
+  document.getElementById('gameOverModal').classList.remove('hidden');
+}
+document.getElementById('retryButton').addEventListener('click', () => {
+  document.getElementById('gameOverModal').classList.add('hidden');
+  resetGame();
+});
+
