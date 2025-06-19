@@ -38,3 +38,54 @@ body {
   padding: 10px 20px;
   font-size: 18px;
 }
+
+@font-face {
+  font-family: 'PressStart2P';
+  src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+}
+
+#gameOverModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  font-family: 'PressStart2P', monospace;
+}
+
+#gameOverModal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #222;
+  color: white;
+  padding: 30px;
+  border: 4px solid red;
+  text-align: center;
+  box-shadow: 0 0 15px red;
+}
+
+.modal-content h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  background: black;
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  font-family: inherit;
+  cursor: pointer;
+}
