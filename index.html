@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atari - Shooter</title>
-  <link rel="stylesheet" href="estilos.css">
-</head>
-<body>
-    <div class="nav">
-        <div id="score" class="nav">Puntaje: 0</div>
-        <div id="lives" class="nav">Vidas:</div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atari - Shooter</title>
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+    <div id="gameOverModal" class="hidden">
+      <div class="modal-content">
+        <h1>GAME OVER</h1>
+        <p id="finalScore">Score: 0</p>
+        <button id="retryButton">Reintentar</button>
+      </div>
     </div>
-  <canvas id="gameCanvas" width="480" height="320"></canvas>
-  <h3 class="item">Controls:</h3>
-  <div class="nav">
-    <h5 class="nav">Spacebar: Shoot</h5>
-    <h5 class="nav">Left Arrow: Move Left</h5>
-    <h5 class="nav">Right Arrow: Move Right</h5>
-  </div>  
-  <script src="funcion.js"></script>
-</body>
+  <body>
+      <div class="nav">
+          <div id="score" class="nav">Score: 0</div>
+          <div id="lives" class="nav">Lives:</div>
+      </div>
+    <canvas id="gameCanvas" width="480" height="320"></canvas>
+    <h3 class="item">Controls:</h3>
+    <div class="nav">
+      <h5 class="nav">Spacebar: Shoot</h5>
+      <h5 class="nav">Left Arrow: Move Left</h5>
+      <h5 class="nav">Right Arrow: Move Right</h5>
+    </div>  
+    <script src="funcion.js"></script>
+  </body>
 </html>
