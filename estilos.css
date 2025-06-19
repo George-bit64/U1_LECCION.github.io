@@ -19,6 +19,17 @@ body {
   margin-bottom: 5px;
 }
 
+.autor {
+  padding: 5px 10px;
+  white-space: nowrap;
+  font-family: cursive;
+  color: aqua;
+  position: absolute;   
+  right: 5px;        
+  bottom: 5px;
+  margin: 5px 0; 
+}
+
 #gameCanvas {
   background-color: #000;
   border: 3px solid orange;
